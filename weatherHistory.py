@@ -7,9 +7,10 @@ import sys
 def getWeather(airportName, nums, APIKey):
 	#transform the airport name to location(lat, lon)
 
+	strRes = ""
 	if nums > 40 or nums <= 0:
-		print("exceed the range, Please enter the num from 0 to 40!")
-		return
+		strRes = "exceed the range, Please enter the num from 0 to 40!"
+		return strRes
 
 	locationList = [0,0]
 	flag01 = True
@@ -24,8 +25,8 @@ def getWeather(airportName, nums, APIKey):
 	    		break
 
 	if(flag01):
-		print("airportName is wrong. Please enter the correct full airportName")
-		return
+		strRes = "airportName is wrong. Please enter the correct full airportName"
+		return strRes
 
 	print("location is {loc}".format(loc=locationList))
 
@@ -46,6 +47,7 @@ def getWeather(airportName, nums, APIKey):
 
 		print("Time：{time}, Temperature: {temperature} {unit}".format(time=strTime, temperature=strTemperature, unit=strUnit))
 
+	return strRes
 
 def main():
 
