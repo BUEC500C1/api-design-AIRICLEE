@@ -27,4 +27,12 @@ This file is meant to test the main file weatherHistory.py. Check whether it wil
 4. Extract temperature data from .json results
 
 ## Test Samples
-TODO
+### Sample01
+![sample01](https://github.com/BUEC500C1/api-design-AIRICLEE/blob/lighao/Images/sample01.png)
+
+### Sample02
+![sample02](https://github.com/BUEC500C1/api-design-AIRICLEE/blob/lighao/Images/sample02.png)
+
+### Sample03
+![sample03](https://github.com/BUEC500C1/api-design-AIRICLEE/blob/lighao/Images/sample031.png)
+![sample03](https://github.com/BUEC500C1/api-design-AIRICLEE/blob/lighao/Images/sample032.png)
