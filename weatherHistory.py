@@ -3,23 +3,16 @@ import json
 import requests
 import sys
 
-def main():
 
-	#Obtain the input
-	print("Please enter the airport's full name: ")
-	airportName = sys.stdin.readline()
-	print("Please enter the units to forecast (1 unit = 3 hour) (the range is [0, 40]): ")
-	hourNums = sys.stdin.readline()
-	print("Please enter the openweathermap API Key: ")
-	APIKey = sys.stdin.readline().strip()
-	print("")
-
-	nums = int(float((hourNums.strip())))
-	airportName = airportName.strip()
-
-
+def getWeather(airportName, nums, APIKey):
 	#transform the airport name to location(lat, lon)
+
+	if nums > 40 or nums <= 0:
+		print("exceed the range, Please enter the num from 0 to 40!")
+		return
+
 	locationList = [0,0]
+	flag01 = True
 
 	with open('./data.csv', 'r') as f:
 	    reader = csv.reader(f)
@@ -27,7 +20,12 @@ def main():
 	    	if  airportName == row[3]:
 	    		locationList[0] = int(float(row[4]))
 	    		locationList[1] = int(float(row[5]))
+	    		flag01 = False
 	    		break
+
+	if(flag01):
+		print("airportName is wrong. Please enter the correct full airportName")
+		return
 
 	print("location is {loc}".format(loc=locationList))
 
@@ -47,6 +45,24 @@ def main():
 		strTemperature = str(int(float(a['list'][i]['main']['temp']) - 273.15))
 
 		print("Time：{time}, Temperature: {temperature} {unit}".format(time=strTime, temperature=strTemperature, unit=strUnit))
+
+
+def main():
+
+	#Obtain the input
+	print("Please enter the airport's full name: ")
+	airportName = sys.stdin.readline()
+	print("Please enter the units to forecast (1 unit = 3 hour) (the range is [0, 40]): ")
+	hourNums = sys.stdin.readline()
+	print("Please enter the openweathermap API Key: ")
+	APIKey = sys.stdin.readline().strip()
+	print("")
+
+	nums = int(float((hourNums.strip())))
+	airportName = airportName.strip()
+
+	#call for method getWeather()
+	getWeather(airportName, nums, APIKey)
 
 if __name__=="__main__":
   main()
